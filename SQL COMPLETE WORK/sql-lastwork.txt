@@ -1,0 +1,46 @@
+create database app;
+use app;
+
+create table students(
+teacherID INT PRIMARY KEY,
+fNAME VARCHAR(50),
+lNAME VARCHAR(50),
+teacher_hourlypay decimal(5,2),
+teacher_dob date
+);
+
+insert into students values
+(1, "haseeb","shahid", 7.2, "2000-11-13"),
+(2, "azhar","ansari", 8.2, "2000-11-14"),
+(3, "basil","khan", 9.2, "2000-11-15"),
+(4, "ali","osman", 10.2, "2000-11-16" ),
+(5, "hassan","ali", 11.2, "2000-11-18" ),
+(6, "mozam","khan", 11.2, "2000-11-18" );
+
+select * from students;
+
+delete from students
+where teacherid < 5;
+
+set autocommit = off;
+
+rollback;
+
+-- indexes
+use app;
+show indexes from students;
+create index haseebid on students(fname);
+alter table students drop index  haseebid;
+
+select * from students;
+
+
+-- views
+create view std_age as 
+select fname, lname, teacherid from students;
+select * from std_age;
+
+
+
+
+
